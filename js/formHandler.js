@@ -1,6 +1,6 @@
 $(function()
 {	
-	$("input,textarea").jqBootstrapValidation(
+	$('[data-form-type="blocs-form"] input,[data-form-type="blocs-form"] textarea').jqBootstrapValidation(
     {
      	preventSubmit: true,
      	submitSuccess: function($form, event)
@@ -72,7 +72,11 @@ $(function()
 	 {
 		var path = "./includes/"+form.attr('id')+".php";
 		
-		if(form.attr('template-path')) // Check For Template path
+		if (form.attr('data-clean-url-used')) // Clean URL use Double Dot
+		{
+			path = "."+path;
+		}
+		else if (form.attr('template-path')) // Check For Template path
 		{
 			path = form.attr('template-path')+"/includes/"+form.attr('id')+".php";
 		}
